@@ -7,9 +7,16 @@ var losses = 0;
 var guesses = 9;
 var guessed = [];
 
+var restart = function() {
+    guesses = 9;
+    guessed = [];
+    document.querySelector("#lettersguessed").innerHTML = "Letters Guessed: "
+    document.querySelector("#guesses").innerHTML = "Guesses Remaining: 9 "
+}
+
 
 document.onkeyup = function (event) {
-    var userguess = event.key;
+    var userguess = event.key.toLowerCase();
 
     var computerguess = computerchoice[Math.floor(Math.random() * computerchoice.length)];
 
@@ -18,17 +25,27 @@ document.onkeyup = function (event) {
         if (guesses > 0) {
             if ((userguess === computerguess)) {
                 wins++;
-                alert("You win")
-                document.querySelector("#wins").innerHTML = "wins: " + wins;
-               
-            }
-            else if (guesses > 0) {
-            guessed.push(userguess);
-            guesses--;
-            document.querySelector("#lettersguessed").innerHTML = "guessed " + guessed;
+                alert("Congratulations you win!")
+                document.querySelector("#wins").innerHTML = "Wins: " + wins;
+                restart();
 
             }
+            else if (guesses > 0) {
+                guessed.push(userguess);
+                guesses--;
+                
+                document.querySelector("#lettersguessed").innerHTML = "Letters Guessed:  " + guessed;
+                
+                document.querySelector("#guesses").innerHTML = "Guesses Remaining: " + guesses;
+            }
+         if (guesses === 0) {
+                losses++
+                alert("Sorry try again!")
+                document.querySelector("#losses").innerHTML = "Losses: " + losses;
+                restart();
+            }
         }
+
     }
 
 }
