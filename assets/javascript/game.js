@@ -10,8 +10,8 @@ var guessed = [];
 var restart = function() {
     guesses = 9;
     guessed = [];
-    document.querySelector("#lettersguessed").innerHTML = "Letters Guessed: "
-    document.querySelector("#guesses").innerHTML = "Guesses Remaining: 9 "
+    document.getElementById("lettersguessed").innerHTML = "Letters Guessed: "
+    document.getElementById("guesses").innerHTML = "Guesses Remaining: 9 "
 }
 
 
@@ -26,7 +26,7 @@ document.onkeyup = function (event) {
             if ((userguess === computerguess)) {
                 wins++;
                 alert("Congratulations you win!")
-                document.querySelector("#wins").innerHTML = "Wins: " + wins;
+                document.getElementById("wins").innerHTML = "Wins: " + wins;
                 restart();
 
             }
@@ -34,14 +34,14 @@ document.onkeyup = function (event) {
                 guessed.push(userguess);
                 guesses--;
                 
-                document.querySelector("#lettersguessed").innerHTML = "Letters Guessed:  " + guessed;
+                document.getElementById("lettersguessed").innerHTML = "Letters Guessed:  " + guessed;
                 
-                document.querySelector("#guesses").innerHTML = "Guesses Remaining: " + guesses;
+                document.getElementById("guesses").innerHTML = "Guesses Remaining: " + guesses;
             }
          if (guesses === 0) {
                 losses++
                 alert("Sorry try again!")
-                document.querySelector("#losses").innerHTML = "Losses: " + losses;
+                document.getElementById("losses").innerHTML = "Losses: " + losses;
                 restart();
             }
         }
